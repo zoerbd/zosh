@@ -1,0 +1,2 @@
+# zosh
+zosh-shell
