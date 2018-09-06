@@ -1,2 +1,2 @@
 # zosh
-zosh-shell
+Trying to write a posix shell.
