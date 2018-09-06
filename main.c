@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <pwd.h>
-#include "head.h"
+#include "func.h"
 #include <stdarg.h>
 #define BUFF_SIZE 8
 

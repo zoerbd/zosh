@@ -1,4 +1,4 @@
-#include "head.h"
+#include "func.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

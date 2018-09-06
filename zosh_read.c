@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "head.h"
+#include "func.h"
 #define BUFF_UNIT 64
 
 char *zosh_read(void){

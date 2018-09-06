@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "head.h"
+#include "func.h"
 
 #define BUFF_SIZE 64
 
