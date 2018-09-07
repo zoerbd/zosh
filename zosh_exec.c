@@ -82,7 +82,7 @@ int zosh_exec_prog(char **args){
 // main cd functionality
 int zosh_cd(char **args){
 
-	// make sure directory to cd is given
+		// make sure directory to cd is given
 	if(args[1] == NULL){
 
 		fprintf(stderr, "zosh: expected argument to \"cd\"\n");
@@ -92,7 +92,16 @@ int zosh_cd(char **args){
 		// change dir, if value != 0 returned, an error occurred
 		if(chdir(args[1]) != 0){
 
+			if(strcmp(args[1],"~")){
+
+	/*			if(chdir(homedir) != 0)
+					perror("zosh");
+									*/
+				printf("coming soon!\n");
+
+			}else{
 			perror("zosh");
+			}
 
 		}
 

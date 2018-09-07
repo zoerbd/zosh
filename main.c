@@ -51,7 +51,6 @@ int main(int argc, char *argv[]){
 	char pwd[256];
 	struct passwd *userpw = getpwuid(getuid());
 	const char *homedir = userpw->pw_dir;
-		
 
 	do {
 
