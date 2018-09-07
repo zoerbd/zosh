@@ -56,14 +56,8 @@ int main(int argc, char *argv[]){
 	do {
 
 		//if getcwd does not return path
-		if(getcwd(pwd, sizeof(pwd)) == NULL){
+		if(getcwd(pwd, sizeof(pwd)) != NULL){
 			
-			// make sure buffer for prompt is ok
-			if(!prompt_handler(buffer, pwd)){
-				perror("zosh");
-				strcpy(pwd,"Err");
-			}
-
 			// if current dir is home
 			if(!strcmp(pwd, homedir))
 				strcpy(pwd,"~");
@@ -92,21 +86,6 @@ int main(int argc, char *argv[]){
 
 
 	return 0;
-}
-
-// prompt_handler is used to solve memory allocation problem with long paths
-char *prompt_handler(int buffer, char *pwd){
-
-	while(1){
-
-		buffer += BUFF_SIZE;
-		//pwd = realloc(pwd, buffer * sizeof(char));
-
-		if(getcwd(pwd, sizeof(pwd)) != NULL)
-			return pwd;
-
-	}
-
 }
 
 

@@ -14,7 +14,6 @@ int zosh_help(char **args);
 int zosh_exit(char **args);
 
 // prompt functions
-char *prompt_handler(int buffer, char *pwd);
 char *getname(void);
 char *if_user_in(char *line, char *uid);
 
