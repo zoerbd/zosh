@@ -8,7 +8,6 @@
 #define BUFF_SIZE 8
 
 
-
 int main(int argc, char *argv[]){
 
 	char *version = "0.1.3";
@@ -44,36 +43,35 @@ int main(int argc, char *argv[]){
 
 	// buffer and prompt stuff
 	int buffer = BUFF_SIZE;	
-	char *pwd = malloc(10 * buffer * sizeof(char));
 	char *name = malloc(buffer * sizeof(char));
+
+	// get path and username for prompt
 	name = getname();
+
+	char pwd[256];
 	struct passwd *userpw = getpwuid(getuid());
 	const char *homedir = userpw->pw_dir;
-
+		
 
 	do {
 
-		// if pwd successfully got memory space
-		if(pwd){
-
-			//if getcwd does not return path
-			if(getcwd(pwd, sizeof(pwd)) == NULL){
-				
-				// make sure buffer for prompt is ok
-				if(prompt_handler(buffer, pwd) == NULL)
-					perror("zosh");
-
-				// if current dir is home
-				if(!strcmp(pwd, homedir))
-					pwd = "~";
+		//if getcwd does not return path
+		if(getcwd(pwd, sizeof(pwd)) == NULL){
+			
+			// make sure buffer for prompt is ok
+			if(!prompt_handler(buffer, pwd)){
+				perror("zosh");
+				strcpy(pwd,"Err");
 			}
 
-		}else
-			perror("zosh");
-	
+			// if current dir is home
+			if(!strcmp(pwd, homedir))
+				strcpy(pwd,"~");
+
+		}
 
 		// print prompt
-		printf("%s-------------------------------------%s%s%s%s%s%s%s%s%s%s", blue, "$", red, name, blue, "@", green, pwd, blue, "> ", defaultc);
+		printf("%s----------%s%s%s%s%s%s%s%s%s%s", blue, "$", red, name, blue, "@", green, pwd, blue, "> ", defaultc);
 
 		// read rc-file
 		// status = zosh_read_rc_(name);
@@ -99,21 +97,15 @@ int main(int argc, char *argv[]){
 // prompt_handler is used to solve memory allocation problem with long paths
 char *prompt_handler(int buffer, char *pwd){
 
-	register unsigned char i = 0;
-
-	do{
+	while(1){
 
 		buffer += BUFF_SIZE;
-		pwd = realloc(pwd, buffer * sizeof(char));
+		//pwd = realloc(pwd, buffer * sizeof(char));
 
-		if(getcwd(pwd, sizeof(pwd)) == NULL)
+		if(getcwd(pwd, sizeof(pwd)) != NULL)
 			return pwd;
 
-		i++;
-
-	}while(i < 6);
-
-	return NULL;
+	}
 
 }
 
