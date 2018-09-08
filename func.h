@@ -19,7 +19,12 @@ char *if_user_in(char *line, char *uid);
 
 // rc and hist
 int read_rc_(char *user);
+int write_hist(char *user, char *user_input);
 char *interp(char *line);
+char *make_path(char *name, char *type);
+int num_options(void);
+int *rc_prompt(void);
+int *rc_alias(void);
 
 // ...
 void start_in_debug();

@@ -73,7 +73,7 @@ int main(int argc, char *argv[]){
 		input_line = main_read();
 
 		// write input to history file
-		// write_hist(input_line);
+		status = write_hist(name, input_line);
 
 		// parse input
 		exec_list = main_parse(input_line);
