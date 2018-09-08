@@ -3,7 +3,7 @@
 #include "func.h"
 #define BUFF_UNIT 64
 
-char *zosh_read(void){
+char *main_read(void){
 
 	// counter for position in array
 	register int position = 0;

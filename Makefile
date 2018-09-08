@@ -1,5 +1,5 @@
 install:
-	gcc -o z main.c zosh_read.c zosh_parse.c zosh_exec.c zosh_read_rc.c 
+	gcc -o z main.c read.c parse.c exec.c read_rc.c 
 
 clean:
 	rm ./z

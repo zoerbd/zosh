@@ -67,20 +67,20 @@ int main(int argc, char *argv[]){
 		printf("%s----------%s%s%s%s%s%s%s%s%s%s", blue, "$", red, name, blue, "@", green, pwd, blue, "> ", defaultc);
 
 		// read rc-file
-		// status = zosh_read_rc_(name);
+		// status = main_read_rc_(name);
 
 		// read input
-		line = zosh_read();
+		line = main_read();
 
 		// parse input
-		args = zosh_parse(line);
+		args = main_parse(line);
 
 		// execute parsed input
-		status = zosh_exec(args);
+		status = main_exec(args);
 
 		// delete pointer line, args
 
-	// execute while zosh_exec() returns 1
+	// execute while main_exec() returns 1
 	} while(status);
 
 

@@ -18,14 +18,14 @@ char *builtin_str[] = {
 // pointer array that is pointing to each builtin-func
 int (*builtin_func[]) (char **) = {
 
-	&zosh_cd,
-	&zosh_exit,
-	&zosh_help
+	&main_cd,
+	&main_exit,
+	&main_help
 
 };
 
 // get num of builtins
-int zosh_num_builtins(){
+int num_builtins(){
 
 	return sizeof(builtin_str) / sizeof(char*);
 
@@ -33,7 +33,7 @@ int zosh_num_builtins(){
 
 
 // execute specific program by giving prog-name and list of additional args
-int zosh_exec_prog(char **args){
+int main_exec_prog(char **args){
 
 	auto pid_t pid, wpid;
 	auto int status;
@@ -80,7 +80,7 @@ int zosh_exec_prog(char **args){
 
 
 // main cd functionality
-int zosh_cd(char **args){
+int main_cd(char **args){
 
 		// make sure directory to cd is given
 	if(args[1] == NULL){
@@ -113,13 +113,13 @@ int zosh_cd(char **args){
 
 
 // main help functionality
-int zosh_help(char **args){
+int main_help(char **args){
 
 	/* Print help and shell builtins*/
 	printf("Made by the best of all Pokemon-Trainer.\nJust type in program-name and hit return.\nTo get more information to a specific program, you should take a look at the man-page.\nFollowing shell-builtins are implemented:\n");
 	register unsigned char counti;
 
-	while(counti < zosh_num_builtins()){
+	while(counti < num_builtins()){
 
 		printf("   %s\n", builtin_str[counti]);
 		counti++;
@@ -132,7 +132,7 @@ int zosh_help(char **args){
 
 
 // exit functionallity
-int zosh_exit(char **args){
+int main_exit(char **args){
 
 	// exit and do not prompt again
 	return 0;
@@ -140,7 +140,7 @@ int zosh_exit(char **args){
 }
 
 // Start execute user input
-int zosh_exec(char **args){
+int main_exec(char **args){
 
 	register unsigned int i = 0;
 
@@ -151,8 +151,8 @@ int zosh_exec(char **args){
 
 	}
 
-	// check if input is a builtin; if not execute program + parameter list (zosh_exec_prog(args))
-	while(i < zosh_num_builtins()){
+	// check if input is a builtin; if not execute program + parameter list (main_exec_prog(args))
+	while(i < num_builtins()){
 
 
 		// string comparison
@@ -168,7 +168,7 @@ int zosh_exec(char **args){
 	}
 
 	// exec program and return status
-	return zosh_exec_prog(args);
+	return main_exec_prog(args);
 
 }
 

@@ -3,22 +3,22 @@
 #define _head_h
 
 // main functions
-char *zosh_read(void);
-char **zosh_parse(char *line);
-int zosh_exec(char **args);
-int zosh_exec_prog(char **args);
+char *main_read(void);
+char **main_parse(char *line);
+int main_exec(char **args);
+int main_exec_prog(char **args);
 
 // shell builtins
-int zosh_cd(char **args);
-int zosh_help(char **args);
-int zosh_exit(char **args);
+int main_cd(char **args);
+int main_help(char **args);
+int main_exit(char **args);
 
 // prompt functions
 char *getname(void);
 char *if_user_in(char *line, char *uid);
 
 // rc and hist
-int zosh_read_rc_(char *user);
+int main_read_rc_(char *user);
 char *interp(char *line);
 
 // ...

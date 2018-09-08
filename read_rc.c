@@ -6,7 +6,7 @@
 
 #define BUFF_SIZE 64
 
-int zosh_read_rc_(char *user){
+int main_read_rc_(char *user){
 
 	char path[] = "/etc/zosh/";
 	strcat(path, user);

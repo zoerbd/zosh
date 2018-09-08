@@ -9,9 +9,9 @@
 // tokens delimiter
 #define TOKEN_DEL " \t\r\n\a"
 
-char **zosh_parse(char *line){
+char **main_parse(char *line){
 
-	// pretty similar deklaration as in zosh_read()
+	// pretty similar deklaration as in main_read()
 	register int position = 0;	
 	auto int buffer_size = TOKEN_BUFFER_UNIT;
 	auto char **tokens = malloc(buffer_size * sizeof(**tokens));
