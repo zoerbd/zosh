@@ -6,11 +6,20 @@
 
 #define BUFF_SIZE 64
 
-int main_read_rc_(char *user){
+
+void write_hist(char *user_input){
+
+	char *hist_path = "/etc/zosh/history.zosh";
+
+
+}
+
+
+int read_rc(char *user){
 
 	char path[] = "/etc/zosh/";
 	strcat(path, user);
-	strcat(path,".rc");
+	strcat(path,"rc.zosh");
 
 	if(access(path, F_OK|R_OK) != 0){
 
@@ -47,3 +56,4 @@ char *interp(char *line){
 	return 0;	
 
 }
+

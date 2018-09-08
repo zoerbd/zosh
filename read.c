@@ -5,7 +5,7 @@
 
 char *main_read(void){
 
-	// counter for position in array
+	// counter for position in arr
 	register int position = 0;
 
 	// size for dynamically buffering of input

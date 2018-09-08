@@ -18,7 +18,7 @@ char *getname(void);
 char *if_user_in(char *line, char *uid);
 
 // rc and hist
-int main_read_rc_(char *user);
+int read_rc_(char *user);
 char *interp(char *line);
 
 // ...

@@ -37,8 +37,8 @@ int main(int argc, char *argv[]){
 	static const char defaultc[]= "\033[0m";
 
 	// return vars for main functions
-	char *line;
-	char **args;
+	char *input_line;
+	char **exec_list;
 	int status;
 
 	// buffer and prompt stuff
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]){
 
 	do {
 
-		//if getcwd does not return path
+		//if getcwd does not return a path
 		if(getcwd(pwd, sizeof(pwd)) != NULL){
 			
 			// if current dir is home
@@ -67,18 +67,21 @@ int main(int argc, char *argv[]){
 		printf("%s----------%s%s%s%s%s%s%s%s%s%s", blue, "$", red, name, blue, "@", green, pwd, blue, "> ", defaultc);
 
 		// read rc-file
-		// status = main_read_rc_(name);
+		// status = read_rc(name);
 
 		// read input
-		line = main_read();
+		input_line = main_read();
+
+		// write input to history file
+		// write_hist(input_line);
 
 		// parse input
-		args = main_parse(line);
+		exec_list = main_parse(input_line);
 
 		// execute parsed input
-		status = main_exec(args);
+		status = main_exec(exec_list);
 
-		// delete pointer line, args
+		// delete pointer input_line, exec_list
 
 	// execute while main_exec() returns 1
 	} while(status);
@@ -157,6 +160,7 @@ char *if_user_in(char *line, char *uid){
 
 }
 
+/*
 // int delete
 char idel(int *pointer,...){
 
@@ -178,7 +182,6 @@ char idel(int *pointer,...){
 	return 1;
 }
 
-/*
 // char delete
 char cdel(char *pointer,...){
 
