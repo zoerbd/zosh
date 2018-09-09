@@ -52,6 +52,17 @@ int main(int argc, char *argv[]){
 	struct passwd *userpw = getpwuid(getuid());
 	const char *homedir = userpw->pw_dir;
 
+	// read rc-file
+	 status = read_rc(name);
+
+	// parse input
+	exec_list = main_parse(input_line);
+
+	// execute parsed input
+	status = main_exec(exec_list);
+
+
+
 	do {
 
 		//if getcwd does not return a path
@@ -65,9 +76,6 @@ int main(int argc, char *argv[]){
 
 		// print prompt
 		printf("%s----------%s%s%s%s%s%s%s%s%s%s", blue, "$", red, name, blue, "@", green, pwd, blue, "> ", defaultc);
-
-		// read rc-file
-		// status = read_rc(name);
 
 		// read input
 		input_line = main_read();

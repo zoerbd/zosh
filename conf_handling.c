@@ -13,10 +13,11 @@ int write_hist(char *user, char *user_input){
 	FILE *histfile;
 	char *path;
 
-	if((path = make_path(user, "hist")) == NULL)
+	if(!(path = make_path(user, "hist")))
 		return -1;
 
-	histfile = fopen(path, "a+");
+	if(!(histfile = fopen(path, "a+")))
+		return -1;
 
 	if((fprintf(histfile, "%s\n", user_input)) > 0)
 		return -1;
@@ -30,24 +31,26 @@ int write_hist(char *user, char *user_input){
 int read_rc(char *user){
 
 	FILE *rcfile;
-	char *path;
+	char *path = malloc(BUFF_SIZE / 4 * sizeof(char));
 	char *line;
 	char *username = malloc(BUFF_SIZE * sizeof(char));
 	size_t len = 0;
 	ssize_t read;
 
-	path = make_path(user, "rc");
+	if(!(path = make_path(user, "rc")))
+		return -1;
 
-	rcfile = fopen(path, "a+");
-
-    if (!rcfile)
+	// not
+	// working
+	// yet!!
+	// ------------------------------
+	if((rcfile = fopen(path, "a+")))
         return -1;
+	// ------------------------------
+	//
 
-	while ((read = getline(&line, &len, rcfile)) != -1){
-
+	while((read = getline(&line, &len, rcfile)) != -1)
 		interp(line);
-
-	}
 
 	return 0;
 }
@@ -67,14 +70,11 @@ char *make_path(char *user, char *type){
 
 	char *path = malloc(BUFF_SIZE * sizeof(char));
 	char *dir = "/etc/zosh/";
+	FILE *fp;
 	struct stat st = {0};
 
 	if((stat(dir, &st)) == -1)
 		mkdir(dir, 0666);
-
-	// check if file exists and is writable, readable for user
-	if(access(path, F_OK|R_OK|W_OK) != 0)
-		return NULL;
 
 	// apend username, type of file and extension to complete path
 	path[0] = '\0';
@@ -82,6 +82,12 @@ char *make_path(char *user, char *type){
 	strcat(path, user);
 	strcat(path, type);
 	strcat(path, ".zosh");
+
+	// check if file exists and is writable, readable for user
+	if(access(path, F_OK|R_OK|W_OK) != 0){
+		fp = fopen(path ,"a");
+		fclose(fp);
+	}
 
 	return path;
 
