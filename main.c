@@ -10,7 +10,7 @@
 
 int main(int argc, char *argv[]){
 
-	char *version = "0.1.3";
+	char *version = "0.1.8";
 
 	if(argc > 1){
 
