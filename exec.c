@@ -23,8 +23,8 @@ int (*builtin_func[]) (char **) = {
 	&main_cd,
 	&main_exit,
 	&main_help,
-	&rc_alias,
-	&rc_prompt
+	&main_alias,
+	&main_prompt
 
 };
 
@@ -121,7 +121,7 @@ int main_help(char **args){
 
 	/* Print help and shell builtins*/
 	printf("Made by the best of all Pokemon-Trainer.\nJust type in program-name and hit return.\nTo get more information to a specific program, you should take a look at the man-page.\nFollowing shell-builtins are implemented:\n");
-	register unsigned char counti;
+	register unsigned char counti = 0;
 
 	while(counti < num_builtins()){
 
@@ -173,5 +173,17 @@ int main_exec(char **args){
 
 	// exec program and return status
 	return main_exec_prog(args);
+
+}
+
+int main_alias(char **args){
+
+	return 0;
+
+}
+
+int main_prompt(char **args){
+
+	return 0;
 
 }

@@ -12,22 +12,20 @@ int main_exec_prog(char **args);
 int main_cd(char **args);
 int main_help(char **args);
 int main_exit(char **args);
+int main_prompt(char **args);
+int main_alias(char **args);
 
 // prompt functions
 char *getname(void);
 char *if_user_in(char *line, char *uid);
 
 // rc and hist
+char *make_path(char *name, char *type);
 int read_rc(char *user);
 int write_hist(char *user, char *user_input);
-void interp(char *line);
-char *make_path(char *name, char *type);
-int num_options(void);
-int rc_prompt(char **theme);
-int rc_alias(char **alias);
 
-// ...
-void start_in_debug();
+// etc
+void start_in_debug(void);
 char cdel(char *pointer,...);
 char idel(int *pointer,...);
 

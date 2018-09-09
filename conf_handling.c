@@ -30,40 +30,29 @@ int write_hist(char *user, char *user_input){
 
 int read_rc(char *user){
 
+	// vars for getline()
 	FILE *rcfile;
-	char *path = malloc(BUFF_SIZE / 4 * sizeof(char));
 	char *line;
-	char *username = malloc(BUFF_SIZE * sizeof(char));
-	size_t len = 0;
-	ssize_t read;
+	size_t len;
+	
+	char *path = malloc(BUFF_SIZE / 4 * sizeof(char));
+
+	// vars for return values from parse, exec
+	auto char **rclist;
+	auto int rvalue;
 
 	if(!(path = make_path(user, "rc")))
 		return -1;
 
-	// not
-	// working
-	// yet!!
-	// ------------------------------
-	if((rcfile = fopen(path, "a+")))
+	if(!(rcfile = fopen(path, "a+")))
         return -1;
-	// ------------------------------
-	//
 
-	while((read = getline(&line, &len, rcfile)) != -1)
-		interp(line);
+	while((getline(&line, &len, rcfile)) != -1){
+		rclist = main_parse(line);
+		rvalue = main_exec(rclist);
+	}
 
 	return 0;
-}
-
-void interp(char *line){
-
-	auto char **rclist;
-	register unsigned int i = 0;
-	auto int rvalue;
-
-	rclist = main_parse(line);
-	rvalue = main_exec(rclist);
-
 }
 
 char *make_path(char *user, char *type){
@@ -84,23 +73,11 @@ char *make_path(char *user, char *type){
 	strcat(path, ".zosh");
 
 	// check if file exists and is writable, readable for user
-	if(access(path, F_OK|R_OK|W_OK) != 0){
+	if((access(path, F_OK|R_OK|W_OK)) != 0){
 		fp = fopen(path ,"a");
 		fclose(fp);
 	}
 
 	return path;
-
-}
-
-int rc_alias(char **alias){
-
-	return 0;
-
-}
-
-int rc_prompt(char **theme){
-
-	return 0;
 
 }

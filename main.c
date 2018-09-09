@@ -32,8 +32,6 @@ int main(int argc, char *argv[]){
 	static const char red[] = "\033[0;31m";
 	static const char blue[] = "\033[0;34m";
 	static const char green[] = "\033[0;32m";
-	static const char magenta[] = "\033[0;35m";
-	static const char lblue[] = "\034[0;36m";
 	static const char defaultc[]= "\033[0m";
 
 	// return vars for main functions
@@ -53,15 +51,8 @@ int main(int argc, char *argv[]){
 	const char *homedir = userpw->pw_dir;
 
 	// read rc-file
-	 status = read_rc(name);
-
-	// parse input
-	exec_list = main_parse(input_line);
-
-	// execute parsed input
-	status = main_exec(exec_list);
-
-
+	if(read_rc(name) != 0)
+		fprintf(stderr, "Error occurred while trying to use rc-file.\n");
 
 	do {
 
@@ -94,7 +85,6 @@ int main(int argc, char *argv[]){
 	// execute while main_exec() returns 1
 	} while(status);
 
-
 	return 0;
 }
 
@@ -106,8 +96,6 @@ char *getname(void){
 	char *username = malloc(BUFF_SIZE * sizeof(char));
 	char line[255];
 	char *uid = malloc((BUFF_SIZE / 2) * sizeof(char));
-	size_t len;
-	ssize_t read;
 
 	// if writing uid to string uid returns 1, root is current user
 	if((sprintf(uid, "%d", getuid())) == 1)
