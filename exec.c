@@ -11,7 +11,9 @@ char *builtin_str[] = {
 
 	"cd",
 	"exit",
-	"help"
+	"help",
+	"alias",
+	"prompt"
 
 };
 
@@ -20,7 +22,9 @@ int (*builtin_func[]) (char **) = {
 
 	&main_cd,
 	&main_exit,
-	&main_help
+	&main_help,
+	&rc_alias,
+	&rc_prompt
 
 };
 
