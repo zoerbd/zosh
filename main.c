@@ -14,12 +14,12 @@ int main(int argc, char *argv[]){
 
 	if(argc > 1){
 
-	if(strcmp(argv[1], "-v")){
+	if(!strcmp(argv[1], "-d")){
 
 		printf("start_in_debug() is coming soon!\n");
 		return 0;
 
-	} else if(strcmp(argv[1], "-d")){
+	} else {
 
 		printf("%s\n", version);
 		return 0;
