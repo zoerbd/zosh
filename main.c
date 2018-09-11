@@ -4,7 +4,6 @@
 #include <string.h>
 #include <pwd.h>
 #include "func.h"
-#include <stdarg.h>
 #define BUFF_SIZE 8
 
 
@@ -12,21 +11,22 @@ int main(int argc, char *argv[]){
 
 	char *version = "0.1.8";
 
+	// check if argument is given
 	if(argc > 1){
 
+	// start in debug
 	if(strcmp(argv[1], "-v")){
-
 		printf("start_in_debug() is coming soon!\n");
 		return 0;
 
+	// print version
 	} else if(strcmp(argv[1], "-d")){
-
 		printf("%s\n", version);
 		return 0;
 	}
-
 	}
 
+//	free(version);
 
 	// colored printing
 	static const char red[] = "\033[0;31m";
@@ -81,6 +81,8 @@ int main(int argc, char *argv[]){
 		status = main_exec(exec_list);
 
 		// delete pointer input_line, exec_list
+		free(input_line);
+		free(exec_list);
 
 	// execute while main_exec() returns 1
 	} while(status);
@@ -155,47 +157,3 @@ char *if_user_in(char *line, char *uid){
 	return NULL;
 
 }
-
-/*
-// int delete
-char idel(int *pointer,...){
-
-	register int i;
-	va_list valist;
-	int varg;
-
-	va_start(valist, pointer);
-
-	while(va_arg(valist,int) && i < *pointer){
-
-		varg = va_arg(valist, int);
-		//free(.........);
-		i++;
-	}
-
-	va_end(valist);
-
-	return 1;
-}
-
-// char delete
-char cdel(char *pointer,...){
-
-        register int i;
-        va_list valist;
-        int varg;
-
-        va_start(valist, pointer);
-
-        while(va_arg(valist,char) && i < *pointer){
-
-                varg = va_arg(valist, char);
-                //free(.........);
-                i++;
-        }
-
-        va_end(valist);
-
-        return 1;
-}
-*/

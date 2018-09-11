@@ -26,7 +26,5 @@ int write_hist(char *user, char *user_input);
 
 // etc
 void start_in_debug(void);
-char cdel(char *pointer,...);
-char idel(int *pointer,...);
 
 #endif
