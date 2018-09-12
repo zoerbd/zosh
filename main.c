@@ -27,8 +27,6 @@ int main(int argc, char *argv[]){
 	}
 	}
 
-//	free(version);
-
 	// colored printing
 	static const char red[] = "\033[0;31m";
 	static const char blue[] = "\033[0;34m";
