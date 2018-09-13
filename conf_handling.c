@@ -17,14 +17,20 @@ int write_hist(char *user, char *user_input){
 		return -1;
 
 	if(!(histfile = fopen(path, "a+")))
-		return -1;
+		return 0;
 
 	if((fprintf(histfile, "%s\n", user_input)) > 0)
 		return -1;
 
-	return 0;
+	if(path)
+		free(path);
+	if(histfile)
+		free(histfile);
 
 	fclose(histfile);
+
+	return 0;
+
 
 }
 
@@ -35,7 +41,7 @@ int read_rc(char *user){
 	char *line;
 	size_t len;
 	
-	char *path = malloc(BUFF_SIZE / 4 * sizeof(char));
+	char *path;
 
 	// vars for return values from parse, exec
 	auto char **rclist;
@@ -51,7 +57,13 @@ int read_rc(char *user){
 		rclist = main_parse(line);
 		rvalue = main_exec(rclist);
 	}
-
+		
+	if(line)
+		free(line);
+	
+	if(path)
+		free(path);
+	
 	return 0;
 }
 

@@ -1,5 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -g
+CFLAGS = -g
 BIN = zosh
 MAIN = main.c read.c parse.c exec.c conf_handling.c
 

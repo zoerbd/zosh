@@ -20,12 +20,13 @@ int main(int argc, char *argv[]){
 		printf("start_in_debug() is coming soon!\n");
 		return 0;
 
-	} else {
+	}else{
 
 		printf("%s\n", version);
 		return 0;
 	}
 	}
+
 
 	// colored printing
 	static const char red[] = "\033[0;31m";
@@ -37,10 +38,7 @@ int main(int argc, char *argv[]){
 	char *input_line;
 	char **exec_list;
 	int status;
-
-	// buffer and prompt stuff
-	int buffer = BUFF_SIZE;	
-	char *name = malloc(buffer * sizeof(char));
+	char *name;
 
 	// get path and username for prompt
 	name = getname();
@@ -80,8 +78,11 @@ int main(int argc, char *argv[]){
 		status = main_exec(exec_list);
 
 		// delete pointer input_line, exec_list
-		free(input_line);
-		free(exec_list);
+		if(input_line)
+			free(input_line);
+
+		if(exec_list)
+			free(exec_list);
 
 	// execute while main_exec() returns 1
 	} while(status);
@@ -94,7 +95,7 @@ char *getname(void){
 	
 	// declarations for getname
 	FILE *passwdf;
-	char *username = malloc(BUFF_SIZE * sizeof(char));
+	char *username;
 	char line[255];
 	char *uid = malloc((BUFF_SIZE / 2) * sizeof(char));
 
@@ -107,7 +108,8 @@ char *getname(void){
 
 	// return unkown on err
 	if (passwdf == NULL)
-		return "unkown";
+		perror("zosh");
+		return "error";
 
 	// read file line by line
 	while(fgets(line, 255, (FILE*) passwdf)){
@@ -121,9 +123,17 @@ char *getname(void){
 
 	}
 
+	// free pointers
+	if(username)
+		free(username);
+	if(uid)
+		free(uid);
+	if(passwdf)
+		free(passwdf);
+
 	// close passwd and return
 	fclose(passwdf);
-	return "unkown";
+	return "error";
 
 }
 
@@ -131,11 +141,11 @@ char *getname(void){
 char *if_user_in(char *line, char *uid){
 
 	// declarations for getname
-	char *correct_line = malloc(6 * BUFF_SIZE * sizeof(char));
+	char *correct_line;
 	char *c = malloc(BUFF_SIZE * sizeof(char));
-	register unsigned int counti = 0;
+	register int counti = 0;
 
-	//locates first occurrence of uid in line, returns pointer to beginning of first occ.
+	//locates first occurrence of uid in line; returns pointer to beginning of first occ.
 	if((correct_line = strstr(line, uid)) != NULL){
 
 		// while name is not too large for c-var
@@ -148,9 +158,14 @@ char *if_user_in(char *line, char *uid){
 			// write char of line to c and count up
 			c[counti] = line[counti];
 			counti++;
-
 		}
 	}
+
+	// free vars
+	if(c)
+		free(c);
+	if(correct_line)
+		free(correct_line);
 
 	// return NULL if nothing found
 	return NULL;

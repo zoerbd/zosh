@@ -53,6 +53,9 @@ char **main_parse(char *line){
 
 	}
 
+	if(token)
+		free(token);
+
 	// write at last position NULL to signalize end of input and return
 	tokens[position] = NULL;
 	return tokens;
