@@ -1,7 +1,7 @@
 # zosh
 Trying to write a posix shell.
 
-# Building
+# Build and install
 
       $ git clone https://github.com/zoerbd/zosh
       $ cd ./zosh
@@ -9,4 +9,4 @@ Trying to write a posix shell.
 
 # Usage
 
-      $ ./zosh
+      $ zosh
