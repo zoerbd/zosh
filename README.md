@@ -1,4 +1,3 @@
-# zosh
 Trying to write a posix shell.
 
 # Build and install
