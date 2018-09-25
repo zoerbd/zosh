@@ -124,13 +124,13 @@ char *getname(void){
 	}
 
 	// free pointers
-	if(username)
+	/*if(username)
 		free(username);
 	if(uid)
 		free(uid);
 	if(passwdf)
 		free(passwdf);
-
+*/
 	// close passwd and return
 	fclose(passwdf);
 	return "error";
