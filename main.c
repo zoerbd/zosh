@@ -162,11 +162,11 @@ char *if_user_in(char *line, char *uid){
 	}
 
 	// free vars
-	if(c)
+	/*if(c)
 		free(c);
 	if(correct_line)
 		free(correct_line);
-
+*/
 	// return NULL if nothing found
 	return NULL;
 
