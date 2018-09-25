@@ -124,13 +124,13 @@ char *getname(void){
 	}
 
 	// free pointers
-	/*if(username)
+	if(username)
 		free(username);
 	if(uid)
 		free(uid);
 	if(passwdf)
 		free(passwdf);
-*/
+
 	// close passwd and return
 	fclose(passwdf);
 	return "error";
@@ -162,11 +162,11 @@ char *if_user_in(char *line, char *uid){
 	}
 
 	// free vars
-	/*if(c)
+	if(c)
 		free(c);
 	if(correct_line)
 		free(correct_line);
-*/
+
 	// return NULL if nothing found
 	return NULL;
 
