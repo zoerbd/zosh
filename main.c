@@ -47,9 +47,10 @@ int main(int argc, char *argv[]){
 	struct passwd *userpw = getpwuid(getuid());
 	const char *homedir = userpw->pw_dir;
 
-	// read rc-file
+	/* read rc-file
 	if(read_rc(name) != 0)
 		fprintf(stderr, "Error occurred while trying to use rc-file.\n");
+	*/
 
 	do {
 
@@ -69,7 +70,7 @@ int main(int argc, char *argv[]){
 		input_line = main_read();
 
 		// write input to history file
-		status = write_hist(name, input_line);
+		//status = write_hist(name, input_line);
 
 		// parse input
 		exec_list = main_parse(input_line);
@@ -93,7 +94,7 @@ int main(int argc, char *argv[]){
 
 char *getname(void){
 	
-	// declarations for getname
+	/* declarations for getname
 	FILE *passwdf;
 	char *username;
 	char line[255];
@@ -134,6 +135,16 @@ char *getname(void){
 	// close passwd and return
 	fclose(passwdf);
 	return "error";
+	*/
+
+	uid_t uid = getuid();
+	struct passwd *pw = getpwuid(uid);
+
+	if (pw){
+		return pw->pw_name;
+	}
+
+	return NULL;
 
 }
 
