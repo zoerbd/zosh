@@ -5,7 +5,7 @@ Trying to write a posix shell.
 
       $ git clone https://github.com/zoerbd/zosh
       $ cd ./zosh
-      $ make
+      $ sudo make
 
 # Usage
 
