@@ -64,7 +64,7 @@ int main(int argc, char *argv[]){
 		}
 
 		// print prompt
-		printf("%s----------%s%s%s%s%s%s%s%s%s%s", blue, "$", red, name, blue, "@", green, pwd, blue, "> ", defaultc);
+		printf("%s----------%s%s%s%s%s%s%s%s%s%s", blue, "$", red, name, blue, "@", green, pwd, blue, "$ ", defaultc);
 
 		// read input
 		input_line = main_read();
