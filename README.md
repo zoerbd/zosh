@@ -1,5 +1,5 @@
 # zosh
-Trying to write a posix shell.
+Wrote a small posix shell for educational purposes.
 
 # Build and install
 
